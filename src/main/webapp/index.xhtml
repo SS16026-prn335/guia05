@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Rol</title>
+    </h:head>
+    <h:body>
+        <h3>Rol</h3>
+        <h:selectBooleanCheckbox value="prueva" label="mostrar"/><h:outputText value="Mostrar Solamente Los Utilizados" />
+        
+        <h:form>
+            <p:dataTable value="#{frmRol.roles}" var="r" paginator="true" paginatorPosition="bottom" rows="5" >
+                <p:column headerText="id">
+                    <h:outputText value="#{r.idRol}"></h:outputText>
+                </p:column>
+                <p:column headerText="nombre">
+                    <h:outputText value="#{r.nombre}"></h:outputText>
+                </p:column>
+                <p:column headerText="activo">
+                    <h:outputText value="#{r.activo}"></h:outputText>
+                </p:column>
+                <p:column headerText="descripcion">
+                    <h:outputText value="#{r.descripcion}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        
+        <f:view>
+            <h:form>
+                <h3><h:outputText value="Crear Nuevo Registro"/></h3>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Nombre:" for="nombre" />
+                    <p:inputText id="nombre" value="#{frmRol.r.nombre}" title="Nombre" required="true" requiredMessage="The Nombre field is required."/>
+                    <p:outputLabel value="Activo:" for="activo" />
+                    <p:selectBooleanCheckbox id="activo" value="#{frmRol.r.activo}" />
+                    <p:outputLabel value="Descripcion:" for="descripcion" />
+                    <p:inputTextarea id="descripcion" value="#{frmRol.r.descripcion}" title="Descripcion" />
+                </p:panelGrid>
+                <p:panelGrid id="c_guardar" columns="2">
+                    <p:commandButton  value="Limpiar" icon="ui-icon-document" ajax="true" action="#{frmRol.limpiar()}" onclick="history.go(0)" /> 
+                    <p:commandButton value="Guardar" icon="ui-icon-disk" ajax="true" actionListener="#{frmRol.guardar()}" />
+                </p:panelGrid>
+            </h:form>
+        </f:view>
+        
+    </h:body>
+</html>
+
